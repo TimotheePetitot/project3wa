@@ -1,0 +1,89 @@
+  fieldset{
+    text-align: center;
+    width:70%;
+    border-radius: 1rem;
+    background-color: transparent;
+    border: .1rem solid var(--cream);
+    color: var(--cream)
+  }
+
+  input{
+    border:none;
+    background-color: var(--green);
+    color: var(--cream);
+    width:100%;
+}
+
+  input[type="radio"], input[type="checkbox"]{
+    display:none
+  }
+  input[type="number"], input[type="date"], input[type="search"]{
+    text-align: center;
+  }
+  input[type="text"], input[type="number"], input[type="password"], input[type="email"], input[type="date"], input[type="search"]{
+    font-size: 1.6rem;
+  }
+
+  input[type="date"]{
+    width:90%;
+  }
+
+//personnaliser l'apparence d'un élément <input> lorsqu'il est en focus, en supprimant la bordure et en modifiant la couleur de fond.
+input:focus{
+    outline: none;
+    background-color: #35756C;
+}
+
+label{
+    width:30%;
+  }
+
+fieldset img{
+    width:80%;
+    height: auto;
+    object-fit: center;
+    padding:1rem;
+  }
+
+  .select{
+    background-color: var(--yellow);
+    border-radius:50%;
+  }
+
+  .selectType{
+    background-color: var(--black);
+    color: var(--cream);
+  }
+
+//MEDIAQUERIES////////////////////////////////
+//VERSION TABLETTE*850px
+@media screen and (max-width:850px) {
+    input[type="text"], input[type="number"], input[type="password"], input[type="email"], input[type="date"], input[type="search"]{
+        font-size: 1.4rem;
+      }
+      label{
+        width:40%;
+      }    
+      fieldset img{
+        width:100%;
+      }
+    }
+    //VERSION Mobile*400px
+    @media screen and (max-width:400px) {
+        input[type="text"], input[type="number"], input[type="password"], input[type="email"], input[type="date"], input[type="search"]{
+            font-size: 1rem;
+          }  
+          label{
+            width:70%;
+          }   
+      }
+    
+      //VERSION Small Mobile*250px
+    @media screen and (max-width:250px) {
+        input[type="text"], input[type="number"], input[type="password"], input[type="email"], input[type="date"], input[type="search"]{
+            font-size: .7rem;
+          }
+          label{
+            width:100%;
+          }    
+      }

@@ -1,0 +1,45 @@
+header, footer{
+    background-color: var(--blue);
+  }
+
+header img, footer img{
+  width:10%;
+  height:auto;
+}
+
+//position pour contenir les modales
+header{
+  position: relative;
+  top: 0;
+  left:0;
+  z-index: 99;
+}
+
+footer{
+  position: relative;
+  bottom: 0;
+  left:0;
+  z-index: 99;
+}
+
+//MEDIAQUERIES////////////////////////////////
+//VERSION TABLETTE*850px
+@media screen and (max-width:850px) {
+  header img, footer img{
+    width:20%;
+  }
+  }
+  //VERSION Mobile*400px
+  @media screen and (max-width:400px) {
+    header img, footer img{
+      width:35%;
+    }
+    }
+  
+    //VERSION Small Mobile*250px
+  @media screen and (max-width:250px) {
+    header img, footer img{
+      width:45%;
+    }
+    }
+

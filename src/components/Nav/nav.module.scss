@@ -1,0 +1,49 @@
+.active {
+  font-weight: bold;
+  color: var(--yellow)
+}
+li{
+  text-align: center;
+  display: inline-block;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+li a{
+  text-decoration: none;
+  color:  var(--cream)
+}
+li a:hover{
+  opacity: .5;
+}
+
+//MEDIAQUERIES////////////////////////////////
+//VERSION TABLETTE*850px
+@media screen and (max-width:850px) {
+  header{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  li{
+    display: block;
+    margin: 2rem;
+    padding: 0;
+  }
+  }
+  //VERSION Mobile*400px
+  @media screen and (max-width:400px) {
+    li{
+      display: block;
+      margin: 1rem;
+      padding: 0;
+    }
+    }
+  
+    //VERSION Small Mobile*250px
+  @media screen and (max-width:250px) {
+    li{
+      display: block;
+      margin: 0rem;
+      padding: 0;
+    }
+    }

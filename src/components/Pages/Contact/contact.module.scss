@@ -1,0 +1,59 @@
+.contactForm  input, .contactForm textarea{
+    border:.2rem solid var(--yellow);
+    border-radius: 2rem;;
+    background-color: var(--cream);
+    color: var(--green);
+    width:50%;
+}
+.contactForm textarea{
+  height: 10rem
+}
+.contactForm input[type="text"], .contactForm input[type="number"], .contactForm input[type="password"], .contactForm input[type="email"], .contactForm textarea{
+    font-size: 1.6rem;
+  }
+  .contactForm label{
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+    width:50%;
+  }
+  .contactList li{
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .contactList li a {
+    text-decoration: none;
+    color:  var(--cream);
+    font-size: var(--fsTitle1)
+  }
+  .contactList li a:hover{
+    opacity: .5;
+  }
+
+//MEDIAQUERIES////////////////////////////////
+//VERSION TABLETTE*850px
+@media screen and (max-width:850px) {
+  .contactForm input[type="text"], .contactForm input[type="number"], .contactForm input[type="password"], .contactForm input[type="email"], .contactForm textarea{font-size: 1.4rem;}.contactForm label, .contactForm  input, .contactForm textarea{width:60%;}
+  .contactList li{
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .contactList li a {
+    font-size: var(--fsTitle2)
+  } 
+    }
+    //VERSION Mobile*400px
+    @media screen and (max-width:400px) {
+    .contactForm input[type="text"], .contactForm input[type="number"], .contactForm input[type="password"], .contactForm input[type="email"], .contactForm textarea{font-size: 1rem;}  
+    .contactForm label, .contactForm  input, .contactForm textarea{width:80%;}
+    .contactList li a {
+      font-size: var(--fsTitle3)
+    }    
+    }
+      //VERSION Small Mobile*250px
+    @media screen and (max-width:250px) {
+      .contactForm input[type="text"], .contactForm input[type="number"], .contactForm input[type="password"], .contactForm input[type="email"], .contactForm textarea{font-size: .7rem;}
+      .contactForm label, .contactForm  input, .contactForm textarea{width:100%;}
+      .contactList{
+        flex-direction: column;
+      }
+    }

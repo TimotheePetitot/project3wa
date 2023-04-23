@@ -1,0 +1,80 @@
+.mainAvatarImg{
+width: 40%;
+}
+.avatarContainer label{
+width: 30%;
+text-align: center;
+}
+.avatarContainer label img{
+    width: 80%;
+    }
+.card{
+    width:50%;
+    border: .3rem dashed #cfb84e;
+    border-radius: 1rem;
+    margin: 1rem;
+}
+.card form input{
+    text-align: center;
+}
+.card button{
+    background-color: var(--cream);
+    color: var(--green)
+}
+.card button:hover{
+    border-color: var(--yellow);
+    background-color: var(--yellow);
+    color: var(--green)
+}
+.hidden{
+    display:none;
+  }
+.removalButton{
+    background-color: #c92d2d;
+    color:var(--yellow)
+ }
+
+ //MEDIAQUERIES////////////////////////////////
+//VERSION TABLETTE*850px
+@media screen and (max-width:850px) {
+        .card{
+            width:70%;
+        }
+    }
+    //VERSION Mobile*400px
+    @media screen and (max-width:400px) {
+        .mainAvatarImg{
+            width: 50%;
+            }
+        .card{
+            width:80%;
+            }
+        .avatarContainer label{
+            width: 40%;
+            }
+      }
+    
+      //VERSION Small Mobile*250px
+    @media screen and (max-width:250px) {
+        .mainAvatarImg{
+            width: 50%;
+            } 
+            .avatarContainer label{
+            width: 70%;
+            }
+            .avatarContainer label img{
+             width: 40%;
+            }
+            p{
+                font-size: .7rem;
+            }
+            .card button{
+                font-size: .7rem;
+            }
+            .card{
+                flex-direction: row;
+            }
+            .card form input{
+                width: 70%;
+            }
+      }
