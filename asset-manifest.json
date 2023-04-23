@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/project3wa/static/css/main.f5dfe230.css",
+    "main.js": "/project3wa/static/js/main.0e78583d.js",
+    "static/js/787.27ae3ffd.chunk.js": "/project3wa/static/js/787.27ae3ffd.chunk.js",
+    "static/media/analyzeExpense.png": "/project3wa/static/media/analyzeExpense.08dbd3dededc0b055608.png",
+    "static/media/avatar1.png": "/project3wa/static/media/avatar1.fc0ab3afc35f8fef7431.png",
+    "static/media/expense.png": "/project3wa/static/media/expense.1ca52bc40d2f4830e297.png",
+    "static/media/Travail.png": "/project3wa/static/media/Travail.c117624a1ebcf90c3b8c.png",
+    "static/media/Alimentation.png": "/project3wa/static/media/Alimentation.f71821be592379c81c85.png",
+    "static/media/avatar3.png": "/project3wa/static/media/avatar3.dac9e820d23f3491bb16.png",
+    "static/media/avatar2.png": "/project3wa/static/media/avatar2.9e71e016ba5df0b18372.png",
+    "static/media/avatar4.png": "/project3wa/static/media/avatar4.9b2c4b58bf8fc9860aad.png",
+    "static/media/Transport.png": "/project3wa/static/media/Transport.28dde4f8e6fc682b6255.png",
+    "static/media/avatar5.png": "/project3wa/static/media/avatar5.47d9b6a05c4a6cdb7d35.png",
+    "static/media/objective.png": "/project3wa/static/media/objective.0b6235cebb3a370e89b9.png",
+    "static/media/Loisir.png": "/project3wa/static/media/Loisir.4f8dfc9cd1fb483926c9.png",
+    "static/media/Sante.png": "/project3wa/static/media/Sante.56e09b7de2b46d1df4ad.png",
+    "static/media/Logement.png": "/project3wa/static/media/Logement.9c5143e417ba6b8fd74a.png",
+    "static/media/Autre.png": "/project3wa/static/media/Autre.38aea9f6daaa53f31808.png",
+    "static/media/banner.jpg": "/project3wa/static/media/banner.dc255e66df2357401dc0.jpg",
+    "static/media/savings.png": "/project3wa/static/media/savings.41422f8f5d41e5ef7293.png",
+    "static/media/smallBanner1.jpg": "/project3wa/static/media/smallBanner1.5d5e0438e53a2512e5d8.jpg",
+    "static/media/smallBanner2.jpg": "/project3wa/static/media/smallBanner2.3d91481d5a2b23b66518.jpg",
+    "static/media/logo.png": "/project3wa/static/media/logo.d3604eae0c5a340d6b4b.png",
+    "index.html": "/project3wa/index.html",
+    "main.f5dfe230.css.map": "/project3wa/static/css/main.f5dfe230.css.map",
+    "main.0e78583d.js.map": "/project3wa/static/js/main.0e78583d.js.map",
+    "787.27ae3ffd.chunk.js.map": "/project3wa/static/js/787.27ae3ffd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f5dfe230.css",
+    "static/js/main.0e78583d.js"
+  ]
+}
