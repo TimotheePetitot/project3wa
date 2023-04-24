@@ -178,10 +178,12 @@ const Profil = () => {
 										},
 									].map(({ value, alt, src }) => (
 										<label
+											htmlFor={`avatar ${value}`}
 											key={value}
 											className={newAvatar === value ? mcform.select : ""}
 										>
 											<input
+												id={`avatar ${value}`}
 												type="radio"
 												name="avatar"
 												value={value}

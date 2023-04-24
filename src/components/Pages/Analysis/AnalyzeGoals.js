@@ -16,9 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 const AnalyzeGoals = () => {
 	const dispatch = useDispatch();
 	const { goals, loading } = useSelector((store) => store.goal);
-	console.log(goals);
 	const { user } = useSelector((store) => store.auth.auth);
-	console.log(user);
 	const isAuthenticated = useSelector(selectIsAuthenticated);
 	const [goalsSelected, setGoalsSelected] = useState([]);
 	const [goalModal, setGoalModal] = useState([]);
@@ -48,7 +46,6 @@ const AnalyzeGoals = () => {
 		setGoalModal(goalsSelected.find((goal) => goal.id === id));
 		setShowModal(true);
 	};
-	console.log(goalModal);
 
 	const handleCloseModal = () => {
 		setShowModal(false);

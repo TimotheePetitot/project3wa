@@ -83,7 +83,7 @@ const Expense = () => {
 									onChange={(e) => setName(e.target.value)}
 								/>
 							</fieldset>
-							<fieldset className={mcApp.m1}>
+							<fieldset className={`${mcApp.m1} ${mcApp.p1}`}>
 								<legend>Description</legend>
 								<input
 									type="text"
@@ -136,12 +136,14 @@ const Expense = () => {
 										},
 									].map(({ value, alt, src }) => (
 										<label
+											htmlFor={`typeImage ${value}`}
 											key={value}
 											className={
 												selectedType === value ? mcform.selectType : ""
 											}
 										>
 											<input
+												id={`typeImage ${value}`}
 												type="radio"
 												name="typeImage"
 												value={value}

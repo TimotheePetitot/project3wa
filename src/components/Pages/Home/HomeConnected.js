@@ -21,8 +21,6 @@ const HomeConnected = ({ user }) => {
 	const dispatch = useDispatch();
 	const userSelected = useSelector((store) => store.auth.auth.user);
 	const isAuthenticated = useSelector(selectIsAuthenticated);
-	console.log(isAuthenticated);
-	console.log(userSelected);
 
 	useEffect(() => {
 		dispatch(initAuth());

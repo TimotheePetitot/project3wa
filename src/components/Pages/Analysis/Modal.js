@@ -219,10 +219,12 @@ function Modal({ expensesName, onClose }) {
 									},
 								].map(({ value, alt, src }) => (
 									<label
+										htmlFor={`type ${value}`}
 										key={value}
 										className={newType === value ? mcform.selectType : ""}
 									>
 										<input
+											id={`type ${value}`}
 											type="radio"
 											name="type"
 											value={value}

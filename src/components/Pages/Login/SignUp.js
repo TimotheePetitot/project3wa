@@ -100,10 +100,12 @@ const SignUp = () => {
 								},
 							].map(({ value, alt, src }) => (
 								<label
+									htmlFor={`profileImage ${value}`}
 									key={value}
 									className={selectedAvatar === value ? mcform.select : ""}
 								>
 									<input
+										id={`profileImage ${value}`}
 										type="radio"
 										name="profileImage"
 										value={value}

@@ -20,12 +20,12 @@ main{
     padding: 1rem
     }
 .sortExpenses article input{
-    margin: 1rem
+    margin: 1rem;
     }
 .sortExpenses article input[type="number"]{
 background-color: var(--cream);
 color: var(--black);
-width: 15%;
+width: 40%;
 }
 .sortExpenses article select{
     width:60%;
@@ -272,7 +272,8 @@ td:before {
             flex-direction: row;
         }
         .sortExpenses article div, .sortExpenses article label{
-            width:90%;
+          flex-direction: row;
+            width:100%;
             }
         .sortExpenses article select{
         width:100%;

@@ -17,9 +17,6 @@ const AnalyzeExpenses = () => {
 	const { expenses, loading } = useSelector((store) => store.expense);
 	const { user } = useSelector((store) => store.auth.auth);
 	const isAuthenticated = useSelector(selectIsAuthenticated);
-	useEffect(() => {
-		dispatch(getExpenses());
-	}, [dispatch]);
 
 	const [selectedMonth, setSelectedMonth] = useState("");
 	const [selectedYear, setSelectedYear] = useState("");
@@ -31,16 +28,6 @@ const AnalyzeExpenses = () => {
 	const [amountMax, setAmountMax] = useState(Number);
 
 	const [userSalary, setUserSalary] = useState(Number);
-	const getYears = () => {
-		let userExpenses = expenses.filter(
-			(expense) => expense?.author_id === user?.id
-		);
-		const years = userExpenses.map((expense) =>
-			new Date(expense.purchased_date).getFullYear()
-		);
-		const uniqueYears = Array.from(new Set(years)); // Enlève les doublons
-		return uniqueYears.sort((a, b) => b - a); // Trie les années en ordre décroissant, du plus  récent au plus ancien
-	};
 	function calculateSalary(expensesSelected, user) {
 		const salary =
 			user.salary -
@@ -49,8 +36,18 @@ const AnalyzeExpenses = () => {
 			}, 0);
 		return salary;
 	}
-
 	useEffect(() => {
+		const getYears = () => {
+			let userExpenses = expenses.filter(
+				(expense) => expense?.author_id === user?.id
+			);
+			const years = userExpenses.map((expense) =>
+				new Date(expense.purchased_date).getFullYear()
+			);
+			const uniqueYears = Array.from(new Set(years)); // Enlève les doublons
+			return uniqueYears.sort((a, b) => b - a); // Trie les années en ordre décroissant, du plus  récent au plus ancien
+		};
+
 		const years = getYears(expensesSelected);
 		setYears(years);
 
@@ -85,8 +82,6 @@ const AnalyzeExpenses = () => {
 		}, []);
 
 		setExpensesSelected(filteredExpenses);
-		console.log(filteredExpenses);
-		console.log(expensesSelected);
 
 		const newSalary = calculateSalary(filteredExpenses, user);
 		setUserSalary(newSalary);
@@ -101,6 +96,7 @@ const AnalyzeExpenses = () => {
 		setAmountMin(0);
 		setSelectedMonth("");
 		setSelectedYear("");
+		setExpensesSelected([]);
 	};
 
 	//ouverture/fermeture modal
@@ -133,6 +129,9 @@ const AnalyzeExpenses = () => {
 
 	// rechargement de page
 	useEffect(() => {
+		dispatch(getExpenses());
+	}, [dispatch]);
+	useEffect(() => {
 		dispatch(initAuth());
 	}, [dispatch]);
 	return (
@@ -158,17 +157,19 @@ const AnalyzeExpenses = () => {
 						className={`${mcApp.dF} ${mcApp.aIC} ${mcApp.jCC} ${mcApp.fWW} ${mcApp.fDC} ${mcApp.w100}`}
 					>
 						<fieldset
-							className={`${mcApp.dF} ${mcApp.aIC} ${mcApp.jCC} ${mcApp.fWW} ${mcApp.fDC} ${mc.sortExpenses} ${mcApp.m1}`}
+							className={`${mcApp.dF} ${mcApp.aIC} ${mcApp.jCC} ${mcApp.fWW} ${mcApp.fDC} ${mc.sortExpenses} ${mcApp.m1} ${mcApp.p1}`}
 						>
 							<legend>Trier vos dépenses</legend>
 							<article
 								className={`${mcApp.dF} ${mcApp.aIC} ${mcApp.jCC} ${mcApp.fWW} ${mcApp.fDC}  ${mcApp.w100} ${mcApp.p1}`}
 							>
 								<label
+									htmlFor="months"
 									className={`${mcApp.dF} ${mcApp.aIC} ${mcApp.jCC} ${mcApp.fWW} ${mcApp.fDC}`}
 								>
 									Mois :
 									<select
+										id="months"
 										value={selectedMonth}
 										onChange={(e) => setSelectedMonth(e.target.value)}
 										required
@@ -189,10 +190,12 @@ const AnalyzeExpenses = () => {
 									</select>
 								</label>
 								<label
+									htmlFor="years"
 									className={`${mcApp.dF} ${mcApp.aIC} ${mcApp.jCC} ${mcApp.fWW} ${mcApp.fDC}`}
 								>
 									Année :
 									<select
+										id="years"
 										value={selectedYear}
 										onChange={(e) => setSelectedYear(e.target.value)}
 										required
@@ -210,10 +213,12 @@ const AnalyzeExpenses = () => {
 								className={`${mcApp.dF} ${mcApp.aIC} ${mcApp.jCSA} ${mcApp.fWW} ${mcApp.w100} ${mcApp.p1}`}
 							>
 								<label
+									htmlFor="minAmount"
 									className={`${mcApp.dF} ${mcApp.aIC} ${mcApp.jCC} ${mcApp.fWW} ${mcApp.fDC}`}
 								>
 									Montant min(€) :
 									<input
+										id="minAmount"
 										type="number"
 										value={amountMin}
 										onChange={(e) => setAmountMin(e.target.value)}
@@ -222,10 +227,12 @@ const AnalyzeExpenses = () => {
 								</label>
 
 								<label
+									htmlFor="maxAmount"
 									className={`${mcApp.dF} ${mcApp.aIC} ${mcApp.jCC} ${mcApp.fWW} ${mcApp.fDC}`}
 								>
 									Montant max(€) :
 									<input
+										id="maxAmount"
 										type="number"
 										value={amountMax}
 										onChange={(e) => setAmountMax(e.target.value)}
@@ -239,7 +246,7 @@ const AnalyzeExpenses = () => {
 							</div>
 						</fieldset>
 						<fieldset
-							className={`${mcApp.dF} ${mcApp.aIC} ${mcApp.jCC} ${mcApp.fWW} ${mcApp.fDC} ${mcApp.m1}`}
+							className={`${mcApp.dF} ${mcApp.aIC} ${mcApp.jCC} ${mcApp.fWW} ${mcApp.fDC} ${mcApp.m1} ${mcApp.p1}`}
 						>
 							<legend>Résumé des dépenses</legend>
 							<h3>
@@ -258,7 +265,7 @@ const AnalyzeExpenses = () => {
 							</p>
 						</fieldset>
 						<fieldset
-							className={`${mcApp.dF} ${mcApp.aIC} ${mcApp.jCC} ${mcApp.fWW} ${mcApp.fDC} ${mcApp.m1} ${mc.apex}`}
+							className={`${mcApp.dF} ${mcApp.aIC} ${mcApp.jCC} ${mcApp.fWW} ${mcApp.fDC} ${mcApp.m1} ${mcApp.p1} ${mc.apex}`}
 						>
 							<legend>Répartition par type</legend>
 							{expensesSelected.length > 0 ? (
@@ -268,7 +275,7 @@ const AnalyzeExpenses = () => {
 							)}
 						</fieldset>
 						<fieldset
-							className={`${mcApp.dF} ${mcApp.aIC} ${mcApp.jCC} ${mcApp.fWW} ${mcApp.fDC} ${mcApp.m1}`}
+							className={`${mcApp.dF} ${mcApp.aIC} ${mcApp.jCC} ${mcApp.fWW} ${mcApp.fDC} ${mcApp.m1} ${mcApp.p1}`}
 						>
 							<legend>Rechercher une dépense</legend>
 							<input
@@ -290,8 +297,9 @@ const AnalyzeExpenses = () => {
 										)
 										.map((expenseSelected) => (
 											<li key={expenseSelected.id}>
-												<label>
+												<label htmlFor={`expenseList ${expenseSelected.id}`}>
 													<input
+														id={`expenseList ${expenseSelected.id}`}
 														type="checkbox"
 														checked={expensesName.includes(expenseSelected)}
 														onChange={() =>

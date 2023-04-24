@@ -28,7 +28,7 @@ const authSlice = createSlice({
 			state.error = null;
 			if (action.payload.token) {
 				setItem("token", action.payload.token);
-				console.log("Token stored in state:", state.auth.token);
+				// console.log("Token stored in state:", state.auth.token);
 			}
 		},
 		loginFailure: (state, action) => {

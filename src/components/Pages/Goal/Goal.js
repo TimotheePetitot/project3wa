@@ -212,10 +212,11 @@ const Goal = () => {
 												)
 												.map((user) => (
 													<li key={user.id}>
-														<label>
+														<label htmlFor={`userImg ${user.pseudo}`}>
 															<input
+																id={`userImg ${user.pseudo}`}
 																type="checkbox"
-																value={user.user_img}
+																src={process.env.PUBLIC_URL + user.user_img}
 																checked={selectedUsers.includes(user.id)}
 																onChange={() => handleUserSelection(user)}
 																onClick={handleSelectMiniAvatar}
@@ -226,7 +227,7 @@ const Goal = () => {
 																		? mc.selectMiniAvatarType
 																		: ""
 																} ${mc.miniAvatar}`}
-																src={user.user_img}
+																src={process.env.PUBLIC_URL + user.user_img}
 																alt={`avatar de ${user.pseudo}`}
 															/>
 															<p>{user.pseudo}</p>
@@ -289,12 +290,14 @@ const Goal = () => {
 										},
 									].map(({ value, alt, src }) => (
 										<label
+											htmlFor={`typeImage ${value}`}
 											key={value}
 											className={
 												selectedType === value ? mcform.selectType : ""
 											}
 										>
 											<input
+												id={`typeImage ${value}`}
 												type="radio"
 												name="typeImage"
 												value={value}
