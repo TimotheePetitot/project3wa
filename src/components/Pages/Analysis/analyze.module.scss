@@ -114,17 +114,17 @@ th, td {
 
 th {
   background-color: #ddd;
-  color: #35756C;
+  color: var(--green);
 }
 
 tr:nth-child(even) {
-  background-color: #E4EDB9;
+  background-color: var(--cream);
   color: #333
 }
 
 tr:nth-child(odd) {
-  background-color: #35756C;
-  color: #E4EDB9
+  background-color: var(--green);
+  color: var(--cream);
 }
 
 tr:nth-child(even) :hover {
@@ -134,7 +134,7 @@ tr:nth-child(even) :hover {
 }
 tr:nth-child(odd) :hover {
   background-color: #ddd;
-  color: #333;
+  color: var(--black);
   font-weight: bold
 }
 

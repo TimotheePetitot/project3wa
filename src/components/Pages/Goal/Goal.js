@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from "react";
+//import components
 import Header from "../../Header/Header";
 import Footer from "../../Footer/Footer";
 
+//Hook
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+//CSS
 import mcApp from "../../app/app.module.scss";
 import mc from "./goal.module.scss";
 import mcform from "../../Pages/Login/form.module.scss";
 
+//image
 import Type1 from "../../../media/images/GoalType/Alimentation.png";
 import Type2 from "../../../media/images/GoalType/Transport.png";
 import Type3 from "../../../media/images/GoalType/Logement.png";
@@ -13,27 +19,56 @@ import Type4 from "../../../media/images/GoalType/Loisir.png";
 import Type5 from "../../../media/images/GoalType/Travail.png";
 import Type6 from "../../../media/images/GoalType/Sante.png";
 import Type7 from "../../../media/images/GoalType/Autre.png";
-import { useDispatch, useSelector } from "react-redux";
+
+//Redux
 import { createNewGoal } from "../../../redux/reducers/goal.slice";
 import { getUsers } from "../../../redux/reducers/user.slice";
 import {
 	selectIsAuthenticated,
 	initAuth,
 } from "../../../redux/reducers/auth.slice";
+
+//Library moment
 import moment from "moment";
 
 const Goal = () => {
-	const dispatch = useDispatch();
-	//aller chercher les pseudo users
+	//Redux Affichage users
 	const { users, loading } = useSelector((store) => store.user);
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(getUsers());
+	}, []);
+	//Redux user connecté
+	const isAuthenticated = useSelector(selectIsAuthenticated);
+	useEffect(() => {
+		dispatch(initAuth());
+	}, [dispatch]);
+
+	//Déclaration de constantes globales du form
+	const [name, setName] = useState("");
+	const [description, setDescription] = useState("");
+	const [totalAmount, setTotalAmount] = useState(0);
+	const [savingAmount, setSavingAmount] = useState(0);
+	const [frequencyAmount, setFrequencyAmount] = useState(0);
+	const [selectedFrequency, setSelectedFrequency] = useState("");
+
+	//Déclaration de constantes recherche d'un user
 	const [searchQuery, setSearchQuery] = useState("");
 	const [participants, setParticipants] = useState([]);
 	const [selectedUsers, setSelectedUsers] = useState([]);
 
-	useEffect(() => {
-		dispatch(getUsers());
-	}, []);
+	//Déclaration de constantes calcul endDate
+	const today = new Date().toLocaleDateString("fr-CA");
+	const [startDate, setStartDate] = useState(today);
+	const [endDate, setEndDate] = useState("");
+	const [frequency, setFrequency] = useState(0);
 
+	//Déclaration de constantes pour l'affichage de messages
+	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+	const [errorMessage, setErrorMessage] = useState("");
+	const [isFormComplete, setIsFormComplete] = useState(false);
+
+	//Fonction pour la selection d'un user
 	const handleUserSelection = (user) => {
 		if (!participants.some((participant) => participant.id === user.id)) {
 			setParticipants([...participants, user]);
@@ -43,29 +78,29 @@ const Goal = () => {
 			setSelectedUsers(selectedUsers.filter((id) => id !== user.id));
 		}
 	};
-	//partie restante
-	const [name, setName] = useState("");
-	const [description, setDescription] = useState("");
-	const [totalAmount, setTotalAmount] = useState(0);
-	const [savingAmount, setSavingAmount] = useState(0);
-	const [frequencyAmount, setFrequencyAmount] = useState(0);
-	const today = new Date().toLocaleDateString("fr-CA");
-	const [startDate, setStartDate] = useState(today);
-	const [endDate, setEndDate] = useState("");
 
-	const [selectedFrequency, setSelectedFrequency] = useState("");
-	const [frequency, setFrequency] = useState(0);
-	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-	const [errorMessage, setErrorMessage] = useState("");
-	const [isFormComplete, setIsFormComplete] = useState(false);
-
+	//Redux Hook useEffect pour l'affichage des erreurs de remplissages pour la date
 	useEffect(() => {
-		if (frequencyAmount && totalAmount && selectedFrequency) {
+		if (frequencyAmount && totalAmount) {
 			setIsFormComplete(true);
 		} else {
 			setIsFormComplete(false);
 		}
 	}, [frequencyAmount, totalAmount, selectedFrequency]);
+
+	// Fonction pour gérer la sélection du nombre de la fréquence pour le calcul de la date de fin
+	function handleFrequencyChange(event) {
+		const selectedFrequency = event.target.value;
+		setSelectedFrequency(selectedFrequency);
+		if (selectedFrequency === "hebdomadaire") {
+			setFrequency(7);
+		} else if (selectedFrequency === "mensuel") {
+			setFrequency(30);
+		} else if (selectedFrequency === "annuel") {
+			setFrequency(365);
+		}
+	}
+	//Fonction calcul date de fin
 	function calculateEndDate(e) {
 		const remainingAmount = totalAmount - savingAmount;
 		const daysLeft =
@@ -74,6 +109,7 @@ const Goal = () => {
 		// Check que startDate est une date valide en utilisant le package 'npm install moment'
 		const isValidDate = moment(startDate, "YYYY-MM-DD", true).isValid();
 
+		//if permettant la gestion des erreurs pour le calcul de la date de fin
 		if (
 			isValidDate &&
 			frequencyAmount !== "" &&
@@ -100,32 +136,19 @@ const Goal = () => {
 		}
 	}
 
-	// Fonction pour gérer la sélection de la fréquence
-	function handleFrequencyChange(event) {
-		const selectedFrequency = event.target.value;
-		setSelectedFrequency(selectedFrequency);
-		if (selectedFrequency === "hebdomadaire") {
-			setFrequency(7);
-		} else if (selectedFrequency === "mensuel") {
-			setFrequency(30);
-		} else if (selectedFrequency === "annuel") {
-			setFrequency(365);
-		}
-	}
-
 	//gestion des class des Types
 	const [selectedType, setSelectedType] = useState("");
 	const handleSelectType = (e) => {
 		setSelectedType(e.target.value);
 	};
 
-	//gestion des class des Types
+	//gestion des class des Avatars
 	const [selectedMiniAvatar, setSelectedMiniAvatar] = useState("");
 	const handleSelectMiniAvatar = (e) => {
 		setSelectedMiniAvatar(e.target.value);
 	};
 
-	//soumission du form
+	//fonction de soumission du form
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const formData = new FormData();
@@ -146,16 +169,8 @@ const Goal = () => {
 			})
 		);
 
-		//erreur si on ne remplie pas les champs mais le message s'affiche quand meme
 		setShowSuccessMessage(true);
 	};
-
-	const isAuthenticated = useSelector(selectIsAuthenticated);
-
-	// rechargement de page
-	useEffect(() => {
-		dispatch(initAuth());
-	}, [dispatch]);
 	return (
 		<div>
 			<Header />
@@ -224,7 +239,7 @@ const Goal = () => {
 															<img
 																className={`${
 																	selectedUsers.includes(user.id)
-																		? mc.selectMiniAvatarType
+																		? mc.selectMiniAvatar
 																		: ""
 																} ${mc.miniAvatar}`}
 																src={process.env.PUBLIC_URL + user.user_img}

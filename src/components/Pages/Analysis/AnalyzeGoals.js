@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 const AnalyzeGoals = () => {
 	const dispatch = useDispatch();
 	const { goals, loading } = useSelector((store) => store.goal);
+	console.log(goals);
 	const { user } = useSelector((store) => store.auth.auth);
 	const isAuthenticated = useSelector(selectIsAuthenticated);
 	const [goalsSelected, setGoalsSelected] = useState([]);
@@ -25,7 +26,8 @@ const AnalyzeGoals = () => {
 	useEffect(() => {
 		if (goals && user) {
 			const userGoals = goals.filter((goal) => {
-				const participantIds = goal.Users.map((user) => user.id);
+				const participantIds = goal.users.map((user) => user.id);
+				console.log(goal);
 				return participantIds.includes(user.id) && goal.author_id !== user.id;
 			});
 			const authorGoals = goals.filter((goal) => {
@@ -112,9 +114,9 @@ const AnalyzeGoals = () => {
 											</td>
 
 											<td data-label="Participant(s)">
-												{goalSelected.Users.map((user) => user.pseudo).join(
-													", "
-												)}
+												{goalSelected.users
+													.map((user) => user.pseudo)
+													.join(", ")}
 											</td>
 											<td
 												data-label="Statut"

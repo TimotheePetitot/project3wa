@@ -1,3 +1,4 @@
+//UL avec class miniAvatarContainer qui permet de contenir les li dans lequel seront ajouter les avatars en bouclant dessus
 .miniAvatarContainer{
   height: 20rem;
   overflow: auto;
@@ -22,7 +23,7 @@
       width: 80%;
 }
 
-.selectMiniAvatarType{
+.selectMiniAvatar{
   background-color: var(--cream);
   color: var(--cream);
   border-radius: 50%;
@@ -35,8 +36,8 @@
 
 select{
   width:100%;
-  background-color: #E4EDB9;
-  border-color: #E4EDB9;
+  background-color: var(--cream);
+  border-color: var(--cream);
   text-align: center;
   margin: 0 auto;
   outline: none;
